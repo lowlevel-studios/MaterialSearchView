@@ -71,7 +71,7 @@ public class VoiceActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (searchView.isSearchOpen()) {
-            searchView.closeSearch();
+            searchView.closeSearch(true);
         } else {
             super.onBackPressed();
         }
