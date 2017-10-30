@@ -169,6 +169,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
         initSearchView();
 
         mSuggestionsListView.setVisibility(GONE);
+		mTintView.setVisibility(VISIBLE);
         setAnimationDuration(AnimationUtil.ANIMATION_DURATION_MEDIUM);
     }
 
@@ -558,7 +559,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
         };
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mSearchLayout.setVisibility(View.VISIBLE);
+            mSearchLayout.setVisibility(VISIBLE);
             AnimationUtil.reveal(mSearchTopBar, animationListener);
 
         } else {
@@ -578,12 +579,46 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
         dismissSuggestions();
         clearFocus();
 
-        mSearchLayout.setVisibility(GONE);
-        if (mSearchViewListener != null) {
-            mSearchViewListener.onSearchViewClosed();
+        if (animate) {
+            setGoneWithAnimation();
+
+        } else {
+            mSearchLayout.setVisibility(GONE);
+            if (mSearchViewListener != null) {
+                mSearchViewListener.onSearchViewShown();
+            }
         }
         mIsSearchOpen = false;
+    }
 
+    private void setGoneWithAnimation() {
+        AnimationUtil.AnimationListener animationListener = new AnimationUtil.AnimationListener() {
+            @Override
+            public boolean onAnimationStart(View view) {
+                return false;
+            }
+
+            @Override
+            public boolean onAnimationEnd(View view) {
+                mSearchLayout.setVisibility(GONE);
+                if (mSearchViewListener != null) {
+                    mSearchViewListener.onSearchViewClosed();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onAnimationCancel(View view) {
+                return false;
+            }
+        };
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AnimationUtil.hide(mSearchTopBar, animationListener);
+
+        } else {
+            AnimationUtil.fadeOutView(mSearchLayout, mAnimationDuration, animationListener);
+        }
     }
 
     /**
