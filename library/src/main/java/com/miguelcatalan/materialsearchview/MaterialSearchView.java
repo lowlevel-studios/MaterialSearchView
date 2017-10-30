@@ -222,7 +222,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
 
         public void onClick(View v) {
             if (v == mBackBtn) {
-                closeSearch();
+                closeSearch(true);
             } else if (v == mVoiceBtn) {
                 onVoiceClicked();
             } else if (v == mEmptyBtn) {
@@ -230,7 +230,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
             } else if (v == mSearchSrcTextView) {
                 showSuggestions();
             } else if (v == mTintView) {
-                closeSearch();
+                closeSearch(true);
             }
         }
     };
@@ -267,7 +267,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
         CharSequence query = mSearchSrcTextView.getText();
         if (query != null && TextUtils.getTrimmedLength(query) > 0) {
             if (mOnQueryChangeListener == null || !mOnQueryChangeListener.onQueryTextSubmit(query.toString())) {
-                closeSearch();
+                closeSearch(true);
                 mSearchSrcTextView.setText(null);
             }
         }
@@ -570,7 +570,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
     /**
      * Close search view.
      */
-    public void closeSearch() {
+    public void closeSearch(boolean animate) {
         if (!isSearchOpen()) {
             return;
         }
