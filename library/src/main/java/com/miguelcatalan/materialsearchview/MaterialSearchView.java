@@ -168,7 +168,9 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
 
         initSearchView();
 
+        mSearchLayout.setVisibility(GONE);
         mSuggestionsListView.setVisibility(GONE);
+        mTintView.setVisibility(VISIBLE);
         setAnimationDuration(AnimationUtil.ANIMATION_DURATION_MEDIUM);
     }
 
@@ -567,7 +569,16 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
     }
 
     /**
-     * Close search view.
+     * Close search view. This will animate the closing of the view.
+     */
+    public void closeSearch() {
+        closeSearch(true);
+    }
+
+    /**
+     * Close search view. If animate is true, Animate the closing of the view.
+     *
+     * @param animate true for animate
      */
     public void closeSearch(boolean animate) {
         if (!isSearchOpen()) {
