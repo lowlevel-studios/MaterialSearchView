@@ -77,14 +77,18 @@ public class AnimationUtil {
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void reveal(final View view, final AnimationListener listener) {
-        int cx = view.getWidth() - (int) TypedValue.applyDimension(
+    public static void reveal(final View view, final View anchor, final AnimationListener listener) {
+        int cw = (anchor != null) ? anchor.getWidth() : view.getWidth();
+        int ch = (anchor != null) ? anchor.getHeight() : view.getHeight();
+
+        int cx = cw - (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 24, view.getResources().getDisplayMetrics());
-        int cy = view.getHeight() / 2;
-        int finalRadius = Math.max(view.getWidth(), view.getHeight());
+        int cy = ch / 2;
+        float finalRadius = (float) Math.hypot(cw, ch);
+
+        view.setVisibility(View.VISIBLE);
 
         Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-        view.setVisibility(View.VISIBLE);
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -110,14 +114,18 @@ public class AnimationUtil {
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void hide(final View view, final AnimationListener listener) {
-        int cx = view.getWidth() - (int) TypedValue.applyDimension(
+    public static void hide(final View view, final View anchor, final AnimationListener listener) {
+        int cw = (anchor != null) ? anchor.getWidth() : view.getWidth();
+        int ch = (anchor != null) ? anchor.getHeight() : view.getHeight();
+
+        int cx = cw - (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 24, view.getResources().getDisplayMetrics());
-        int cy = view.getHeight() / 2;
-        int finalRadius = Math.max(view.getWidth(), view.getHeight());
+        int cy = ch / 2;
+        float finalRadius = (float) Math.hypot(cw, ch);
+
+        view.setVisibility(View.VISIBLE);
 
         Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, finalRadius, 0);
-        view.setVisibility(View.VISIBLE);
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {

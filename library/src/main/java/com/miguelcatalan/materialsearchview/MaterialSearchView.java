@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.speech.RecognizerIntent;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -58,6 +59,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
     private ImageButton mVoiceBtn;
     private ImageButton mEmptyBtn;
     private RelativeLayout mSearchTopBar;
+    private Toolbar mToolbar;
 
     private CharSequence mOldQueryText;
     private CharSequence mUserQuery;
@@ -487,6 +489,15 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
     }
 
     /**
+     * Sets the toolbar where the circle reveal animation should be displayed
+     *
+     * @param toolbar
+     */
+    public void setToolbar(Toolbar toolbar) {
+        mToolbar = toolbar;
+    }
+
+    /**
      * Return true if search is open
      *
      * @return
@@ -560,7 +571,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mSearchLayout.setVisibility(VISIBLE);
-            AnimationUtil.reveal(mSearchTopBar, animationListener);
+            AnimationUtil.reveal(mSearchTopBar, mToolbar, animationListener);
 
         } else {
             AnimationUtil.fadeInView(mSearchLayout, mAnimationDuration, animationListener);
@@ -623,7 +634,7 @@ public class MaterialSearchView extends FrameLayout implements Filter.FilterList
         };
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            AnimationUtil.hide(mSearchTopBar, animationListener);
+            AnimationUtil.hide(mSearchTopBar, mToolbar, animationListener);
 
         } else {
             AnimationUtil.fadeOutView(mSearchLayout, mAnimationDuration, animationListener);
