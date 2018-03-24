@@ -44,7 +44,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Filter getFilter() {
-        Filter filter = new Filter() {
+        return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
@@ -66,6 +66,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
                 return filterResults;
             }
 
+            @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 if (results.values != null) {
@@ -74,7 +75,6 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
                 }
             }
         };
-        return filter;
     }
 
     @Override
@@ -121,10 +121,10 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         TextView textView;
         ImageView imageView;
 
-        public SuggestionsViewHolder(View convertView) {
-            textView = (TextView) convertView.findViewById(R.id.suggestion_text);
+        SuggestionsViewHolder(View convertView) {
+            textView = convertView.findViewById(R.id.suggestion_text);
             if (suggestionIcon != null) {
-                imageView = (ImageView) convertView.findViewById(R.id.suggestion_icon);
+                imageView = convertView.findViewById(R.id.suggestion_icon);
                 imageView.setImageDrawable(suggestionIcon);
             }
         }
