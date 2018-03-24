@@ -26,6 +26,6 @@
         <item name="android:textColorHint">@color/theme_secondary_text_inverted</item>
 
         <!-- Hint for edit text-->
-        <item name="android:hint">@string/search_hint</item>
+        <item name="android:hint">@string/msv_search_hint</item>
     </style>
 </resources>

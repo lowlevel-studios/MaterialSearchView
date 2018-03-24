@@ -23,13 +23,14 @@ public class DefaultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView = findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
         searchView.setEllipsize(true);
+        searchView.setToolbar(toolbar);
         searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override

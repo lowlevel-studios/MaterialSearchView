@@ -20,17 +20,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        defaultButton = (Button) findViewById(R.id.button_default);
+        defaultButton = findViewById(R.id.button_default);
         defaultButton.setOnClickListener(this);
-        themedButton = (Button) findViewById(R.id.button_themed);
+        themedButton = findViewById(R.id.button_themed);
         themedButton.setOnClickListener(this);
-        voiceButton = (Button) findViewById(R.id.button_voice);
+        voiceButton = findViewById(R.id.button_voice);
         voiceButton.setOnClickListener(this);
-        stickyButton = (Button) findViewById(R.id.button_sticky);
+        stickyButton = findViewById(R.id.button_sticky);
         stickyButton.setOnClickListener(this);
-        tabButton = (Button) findViewById(R.id.button_tab);
+        tabButton = findViewById(R.id.button_tab);
         tabButton.setOnClickListener(this);
-        inputTypeButton = (Button) findViewById(R.id.button_input_type);
+        inputTypeButton = findViewById(R.id.button_input_type);
         inputTypeButton.setOnClickListener(this);
     }
 
