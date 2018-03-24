@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
 
@@ -7,8 +8,8 @@
         android:id="@+id/suggestion_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/search_view_text_padding"
-        android:paddingRight="@dimen/search_view_text_padding"
+        android:paddingLeft="@dimen/msv_search_view_text_padding"
+        android:paddingRight="@dimen/msv_search_view_text_padding"
         android:textColor="#727272"
         android:layout_centerVertical="true"
         android:focusable="false"
@@ -20,8 +21,10 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:background="@android:color/transparent"
-        android:paddingLeft="@dimen/search_icon_padding"
-        android:paddingRight="@dimen/search_icon_padding"
+        android:paddingLeft="@dimen/msv_search_icon_padding"
+        android:paddingRight="@dimen/msv_search_icon_padding"
         android:focusable="false"
-        android:src="@drawable/ic_suggestion" />
+        android:src="@drawable/ic_suggestion"
+        tools:ignore="ContentDescription" />
+
 </RelativeLayout>

@@ -98,7 +98,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         SuggestionsViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.suggest_item, parent, false);
+            convertView = inflater.inflate(R.layout.msv_suggest_item, parent, false);
             viewHolder = new SuggestionsViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
